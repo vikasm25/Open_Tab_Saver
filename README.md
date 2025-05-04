@@ -52,3 +52,10 @@ It provides an interactive history view, grouped by date, and lets you restore o
 ### 👩‍💻 Developer
 
 Enjoy tidy tab management with OpenTab Saver! 🙌🐙 Feel free to open issues or contribute enhancements. 💡🚧
+
+### Screenshots
+* 1
+![Screenshot_1](https://github.com/user-attachments/assets/3bd4192d-f514-4bd7-a59f-c9d9438a348a)
+
+* 2
+![Screenshot_2](https://github.com/user-attachments/assets/cd58c704-2abf-4a88-b3c7-1cfa40d344bb)
