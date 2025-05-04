@@ -1,0 +1,6 @@
+/* style.css */
+#tab-table td:nth-child(1), #tab-table th:nth-child(1) { text-align: center; }
+.hide-sn #tab-table td:nth-child(1), .hide-sn #tab-table th:nth-child(1) { display: none; }
+.hide-website #tab-table td:nth-child(2), .hide-website #tab-table th:nth-child(2) { display: none; }
+/* Adjust grid columns when hiding column */
+.hide-sn #tab-table, .hide-website #tab-table { width: 100%; } 
