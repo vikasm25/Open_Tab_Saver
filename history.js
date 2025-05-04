@@ -140,15 +140,11 @@ document.addEventListener('DOMContentLoaded', () => {
   document.getElementById('capture').addEventListener('click', () => {
     chrome.tabs.query({}, (tabs) => {
       const now = new Date();
-      const dd = String(now.getDate()).padStart(2, '0');
-      const mm = String(now.getMonth() + 1).padStart(2, '0');
-      const yyyy = now.getFullYear();
-      const HH = String(now.getHours()).padStart(2, '0');
-      const MN = String(now.getMinutes()).padStart(2, '0');
-      const formatted = `${dd}/${mm}/${yyyy} ${HH}:${MN}`;
+      const extensionBaseUrl = chrome.runtime.getURL('');
+      const filteredTabs = tabs.filter(tab => !tab.url.startsWith(extensionBaseUrl));
       const snapshot = {
         timestamp: now.getTime(),
-        tabs: tabs.map(tab => ({ title: tab.title || '', url: tab.url || '' }))
+        tabs: filteredTabs.map(tab => ({ title: tab.title || '', url: tab.url || '' }))
       };
       snapshots.push(snapshot);
       // Sort snapshots new to old
