@@ -8,11 +8,13 @@ function captureSnapshot() {
       return;
     }
     const now = new Date();
+    const extensionBaseUrl = chrome.runtime.getURL('');
+    const filteredTabs = tabs.filter(tab => !tab.url.startsWith(extensionBaseUrl));
     const snapshot = {
       timestamp: now.getTime(),
       // display format is handled in UI
       formatted: '',
-      tabs: tabs.map(tab => ({ title: tab.title || '', url: tab.url || '' }))
+      tabs: filteredTabs.map(tab => ({ title: tab.title || '', url: tab.url || '' }))
     };
     // Save to storage
     chrome.storage.local.get({ snapshots: [] }, result => {
