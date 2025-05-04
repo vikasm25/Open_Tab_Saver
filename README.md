@@ -14,7 +14,6 @@ It provides an interactive history view, grouped by date, and lets you restore o
 * 📅 **History View**
 
   * Grouped by month 🗓️ or day 📆
-  * Interactive timeline slider 🔄
 * 🔄 **One‑Click Restore**
 
   * Reopen an entire snapshot in one go 🚪➡️🌐
