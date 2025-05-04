@@ -50,12 +50,6 @@ It provides an interactive history view, grouped by date, and lets you restore o
 
 ---
 
-### 🖼️ Icon
-
-Place `icon.png` (170×196 px) in the root—Chrome will scale it to 16×16, 48×48 & 128×128 automatically. 🎨
-
----
-
 ### 👩‍💻 Developer
 
 Enjoy tidy tab management with OpenTab Saver! 🙌🐙 Feel free to open issues or contribute enhancements. 💡🚧
