@@ -57,5 +57,8 @@ Enjoy tidy tab management with OpenTab Saver! 🙌🐙 Feel free to open issue
 * 1
 ![Screenshot_1](https://github.com/user-attachments/assets/3bd4192d-f514-4bd7-a59f-c9d9438a348a)
 
-* 2
+![1](https://github.com/user-attachments/assets/7958fead-0768-4d81-81dc-4164370c01f3)
+
 ![Screenshot_2](https://github.com/user-attachments/assets/cd58c704-2abf-4a88-b3c7-1cfa40d344bb)
+
+![2](https://github.com/user-attachments/assets/e8c36953-0eb0-486f-a0e4-c5d21dcd4060)
