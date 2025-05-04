@@ -1,13 +1,7 @@
-Thought for a second
-
-
-Here’s a fun, emoji‑powered version of your README! 🎉🔖
-
----
-
 ## 🚀 OpenTab Saver
 
-A Chrome extension to capture & stash your open tabs for later—so you never lose track of that research or YouTube rabbit‑hole! 🕵️‍♂️💻
+OpenTab Saver is a Chrome extension that captures and stores your open browser tabs for later retrieval.
+It provides an interactive history view, grouped by date, and lets you restore or export snapshots of tabs as CSV files.
 
 ---
 
