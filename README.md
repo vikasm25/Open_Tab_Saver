@@ -49,6 +49,4 @@ It provides an interactive history view, grouped by date, and lets you restore o
 
 ---
 
-### 👩‍💻 Developer
-
 Enjoy tidy tab management with OpenTab Saver! 🙌🐙 Feel free to open issues or contribute enhancements. 💡🚧
