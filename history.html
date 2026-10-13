@@ -1,61 +1,58 @@
-<!DOCTYPE html>
-<html>
+<!doctype html>
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Tab Snapshots History</title>
-  <style>
-    html, body { height: 100%; margin: 0; padding: 0; font-size: 16px; }
-    body { font-family: sans-serif; background: #fafafa; color: #444; padding: 20px; }
-    h1 { margin: 0 0 10px; font-size: 25px; color: #1976d2; }
-    #container { display: grid; grid-template-columns: 220px 1fr 140px; gap: 20px; height: calc(100vh - 60px); }
-    #snapshots { background: #ffffff; padding: 10px; border-radius: 4px; font-size: 15px; display: flex; flex-direction: column; }
-    #snapshot-list { flex: 1; overflow-y: auto; }
-    .snapshot { position: relative; padding: 8px; border-bottom: 1px solid #ddd; cursor: pointer; font-size: 16px; color: #444; }
-    .snapshot:hover, .snapshot.selected { background: #e0f7fa; }
-    .delete-btn { position: absolute; right: 8px; top: 8px; color: #d32f2f; cursor: pointer; font-weight: bold; opacity: 0; transition: opacity 0.2s; }
-    .snapshot:hover .delete-btn { opacity: 1; }
-    #settings { margin-top: 10px; padding: 8px; border: none; border-radius: 4px; background: #0288d1; color: #fff; cursor: pointer; font-size: 15px; }
-    #details { background: #ffffff; padding: 10px; border-radius: 4px; overflow-y: auto; }
-    #tab-table { width: 100%; border-collapse: collapse; margin-bottom: 10px; font-size: 15px; color: #333; }
-    #tab-table th, #tab-table td { border: 1px solid #ddd; padding: 8px; }
-    #tab-table th { background: #e3f2fd; color: #1976d2; }
-    #tab-table td:nth-child(1) { text-align: center; }
-    #buttons { display: flex; flex-direction: column; gap: 10px; font-size: 15px; padding-top: 20px; }
-    button { padding: 10px 14px; border: none; border-radius: 4px; background: #1976d2; color: #fff; cursor: pointer; font-size: 15px; }
-    button:disabled { background: #90a4ae; cursor: not-allowed; }
-    .snapshot-group { padding: 8px 8px 4px; font-weight: bold; font-size: 14px; color: #1976d2; background: #e3f2fd; margin-top: 10px; }
-    /* Hide columns based on settings */
-    .hide-sn #tab-table td:nth-child(1), .hide-sn #tab-table th:nth-child(1) { display: none; }
-    .hide-website #tab-table td:nth-child(2), .hide-website #tab-table th:nth-child(2) { display: none; }
-    /* Updated light theme colors */
-    #snapshots, #details { background: #ffffff; border: 1px solid #ddd; }
-    .snapshot { background: #ffffff; color: #444; border-color: #ddd; }
-    .snapshot:hover, .snapshot.selected { background: #e0f7fa; }
-    .snapshot-group { background: #e3f2fd; color: #1976d2; }
-    button { background: #1976d2; color: #fff; }
-  </style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Session Library · Open Tab Saver</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="core.js" defer></script>
+  <script src="history.js" defer></script>
 </head>
-<body>
-  <h1>Open Tab Saver</h1>
-  <div id="container">
-    <div id="snapshots">
-      <div id="snapshot-list"></div>
-      <button id="settings">Settings</button>
-    </div>
-    <div id="details">
-      <h2 id="selected-time">Select a snapshot</h2>
-      <table id="tab-table">
-        <thead><tr><th>S.No</th><th>Website</th></tr></thead>
-        <tbody></tbody>
-      </table>
-      <button id="restore" disabled>Restore All Tabs</button>
-    </div>
-    <div id="buttons">
-      <button id="capture">Capture</button>
-      <button id="export" disabled>Export</button>
-      <button id="about">About</button>
-    </div>
+<body class="dashboard-body">
+  <div class="app-shell">
+    <aside class="sidebar">
+      <div class="brand brand-sidebar"><span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i></span><span>open<span class="brand-light">tabs</span><small>SAVER</small></span></div>
+      <div class="sidebar-label">WORKSPACE</div>
+      <nav class="nav" aria-label="Main navigation">
+        <a id="nav-library" href="#library" class="nav-link"><span aria-hidden="true">▦</span> Library</a>
+        <a id="nav-settings" href="#settings" class="nav-link"><span aria-hidden="true">⚙</span> Settings</a>
+      </nav>
+      <div class="sidebar-bottom">
+        <div class="sidebar-tip"><span class="tip-icon" aria-hidden="true">✦</span><strong>A little room to breathe</strong><p>Save a session, close the clutter, and pick up where you left off.</p></div>
+        <div class="sidebar-footer"><div class="sidebar-footer-row"><span>OPEN TAB SAVER</span><span id="sidebar-version">v2.2.0</span></div><div class="sidebar-creator">Created by <strong id="creator-name">Vikas Kumar Meena</strong></div></div>
+      </div>
+    </aside>
+    <main class="main-content">
+      <section id="library-view" aria-labelledby="library-title">
+        <div class="page-heading">
+          <div><span class="eyebrow">YOUR WORKSPACE / LIBRARY</span><h1 id="library-title">Your tab sessions<span class="heading-dot">.</span></h1><p>Everything you saved, ready when you are.</p></div>
+          <div class="heading-actions"><label class="sr-only" for="capture-name">Name this session before capture</label><input id="capture-name" class="capture-name" type="text" maxlength="80" placeholder="Name this session (optional)" autocomplete="off"><button id="capture-window" class="button button-primary" type="button"><span aria-hidden="true">＋</span> Capture this window</button><button id="capture-all" class="button button-secondary" type="button">All windows</button></div>
+        </div>
+        <div class="stats-grid" aria-label="Library overview">
+          <div class="stat-card"><span class="stat-icon stat-purple" aria-hidden="true">▦</span><div><span class="stat-label">Saved sessions</span><strong id="stat-sessions">0</strong></div></div>
+          <div class="stat-card"><span class="stat-icon stat-peach" aria-hidden="true">◫</span><div><span class="stat-label">Tabs saved</span><strong id="stat-tabs">0</strong></div></div>
+          <div class="stat-card"><span class="stat-icon stat-green" aria-hidden="true">◷</span><div><span class="stat-label">Last captured</span><strong id="stat-latest">Never</strong></div></div>
+        </div>
+        <div class="library-toolbar"><div><h2>Session library</h2><p id="result-count" aria-live="polite">Showing 0 sessions</p></div><div class="toolbar-controls"><label class="search-box"><span aria-hidden="true">⌕</span><span class="sr-only">Search sessions by name, date, page title, or URL</span><input id="search" type="search" placeholder="Search name, page, URL, or date" autocomplete="off"></label><label class="filter-box"><span class="sr-only">Filter by capture type</span><select id="filter"><option value="all">All sessions</option><option value="manual">Manual</option><option value="auto">Automatic</option></select></label><label class="filter-box"><span class="sr-only">Sort sessions</span><select id="sort"><option value="newest">Newest first</option><option value="oldest">Oldest first</option><option value="tabs">Most tabs</option></select></label><button id="reset-filters" class="reset-filters" type="button" hidden>Reset</button></div></div>
+        <div class="content-grid">
+          <section class="session-panel" aria-label="Saved sessions"><div id="session-list" class="session-list"></div><div id="list-empty" class="empty-state" hidden><div class="empty-icon" aria-hidden="true">▦</div><h3>No sessions here yet</h3><p>Capture your open tabs to start your library, or try a different search.</p></div></section>
+          <section id="detail-panel" class="detail-panel" aria-label="Session details"><div class="detail-placeholder"><div class="empty-icon" aria-hidden="true">◫</div><h3>Choose a session</h3><p>Select a saved session to see its tabs.</p></div></section>
+        </div>
+      </section>
+      <section id="settings-view" aria-labelledby="settings-title" hidden>
+        <div class="page-heading"><div><span class="eyebrow">YOUR WORKSPACE / SETTINGS</span><h1 id="settings-title">Settings<span class="heading-dot">.</span></h1><p>Make Open Tab Saver work the way you do.</p></div></div>
+        <div class="settings-stack">
+          <div class="settings-card"><div class="settings-icon stat-peach" aria-hidden="true">↗</div><div class="settings-body"><h2>Default restore destination</h2><p>Saved choices open tabs immediately. If you have not chosen one, you will be asked when restoring.</p><label class="field-line" for="restore-default">Open tabs in <select id="restore-default"><option value="">Ask when restoring</option><option value="new">A new window</option><option value="current">The current window</option></select></label></div></div>
+          <div class="settings-card"><div class="settings-icon stat-purple" aria-hidden="true">◷</div><div class="settings-body"><h2>Automatic capture</h2><p>Quietly save all your browser windows on a schedule. Identical sessions are skipped.</p><label class="switch-line"><span>Enable automatic capture</span><input id="auto-enabled" type="checkbox" role="switch"></label><label class="field-line" for="auto-interval">Capture every <input id="auto-interval" type="number" min="1" max="1440" step="1" value="60"> minutes</label></div></div>
+          <div class="settings-card"><div class="settings-icon stat-green" aria-hidden="true">⇩</div><div class="settings-body"><h2>Backup and restore</h2><p>Keep a portable JSON copy of your sessions. Import merges sessions and skips duplicates.</p><div class="settings-actions"><button id="backup" class="button button-secondary" type="button">Download backup</button><label class="button button-ghost file-button">Import backup<input id="import-file" type="file" accept=".json,application/json"></label></div></div></div>
+          <div class="settings-card danger-card"><div class="settings-icon stat-red" aria-hidden="true">×</div><div class="settings-body"><h2>Clear your library</h2><p>Delete every saved session from this browser. Download a backup first if you may need them again.</p><button id="clear-all" class="button button-danger" type="button">Delete all sessions</button></div></div>
+        </div>
+      </section>
+    </main>
   </div>
-  <script src="history.js"></script>
+  <dialog id="rename-dialog" class="modal"><form method="dialog"><div class="modal-icon" aria-hidden="true">✎</div><h2>Rename session</h2><p>Give this set of tabs a name you will recognize.</p><label for="session-name" class="sr-only">Session name</label><input id="session-name" type="text" maxlength="80" placeholder="e.g. Monday research" autocomplete="off"><div class="modal-actions"><button value="cancel" class="button button-ghost">Cancel</button><button id="save-name" value="save" class="button button-primary">Save name</button></div></form></dialog>
+  <dialog id="restore-dialog" class="modal"><form method="dialog"><div class="modal-icon" aria-hidden="true">↗</div><h2>Where should the tabs open?</h2><p>Choose where to restore this session.</p><div class="restore-choices"><label><input type="radio" name="restore-target" value="new"><span><strong>New window</strong><small>Open a separate browser window</small></span></label><label><input type="radio" name="restore-target" value="current"><span><strong>Current window</strong><small>Add tabs to this browser window</small></span></label></div><label class="remember-choice"><input id="remember-restore" type="checkbox"> Make this my default</label><div class="modal-actions"><button value="cancel" class="button button-ghost">Cancel</button><button value="restore" class="button button-primary">Open tabs</button></div></form></dialog>
+  <dialog id="confirm-dialog" class="modal"><form method="dialog"><div class="modal-icon modal-danger" aria-hidden="true">!</div><h2 id="confirm-title">Delete session?</h2><p id="confirm-copy">This cannot be undone.</p><div class="modal-actions"><button value="cancel" class="button button-ghost">Cancel</button><button value="confirm" class="button button-danger">Delete</button></div></form></dialog>
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
 </body>
-</html> 
+</html>

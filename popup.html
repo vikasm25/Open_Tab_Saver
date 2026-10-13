@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Open Tab Saver</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="core.js" defer></script>
+  <script src="popup.js" defer></script>
+</head>
+<body class="popup-body">
+  <main class="popup-shell">
+    <header class="popup-header">
+      <div class="brand"><span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i></span><span>open<span class="brand-light">tabs</span><small>SAVER</small></span></div>
+      <span id="popup-version" class="version-pill">v2.2.0</span>
+    </header>
+    <div class="popup-hero">
+      <span class="eyebrow">SAVE YOUR MOMENT</span>
+      <h1>Keep your tabs.<br><em>Clear your mind.</em></h1>
+      <p>Turn your open tabs into a session you can come back to anytime.</p>
+    </div>
+    <label class="popup-name-field" for="capture-name"><span>SESSION NAME <small>OPTIONAL</small></span><input id="capture-name" type="text" maxlength="80" placeholder="e.g. Weekend research" autocomplete="off"></label>
+    <div class="popup-actions">
+      <button id="capture-window" class="button button-primary" type="button"><span aria-hidden="true">＋</span> Capture this window</button>
+      <button id="capture-all" class="button button-outline" type="button">Capture all windows <span aria-hidden="true">↗</span></button>
+    </div>
+    <section class="popup-latest" aria-labelledby="latest-heading">
+      <div class="section-heading"><h2 id="latest-heading">Latest session</h2><span id="session-count">0 saved</span></div>
+      <div id="latest-content" class="latest-content"><p class="muted">Loading your sessions…</p></div>
+    </section>
+    <button id="open-library" class="button button-library" type="button">Open session library <span aria-hidden="true">↗</span></button>
+    <div id="popup-status" class="popup-status" role="status" aria-live="polite"></div>
+  </main>
+  <dialog id="restore-dialog" class="modal"><form method="dialog"><div class="modal-icon" aria-hidden="true">↗</div><h2>Where should the tabs open?</h2><p>Choose where to restore this session.</p><div class="restore-choices"><label><input type="radio" name="restore-target" value="new"><span><strong>New window</strong><small>Open a separate browser window</small></span></label><label><input type="radio" name="restore-target" value="current"><span><strong>Current window</strong><small>Add tabs to this browser window</small></span></label></div><label class="remember-choice"><input id="remember-restore" type="checkbox"> Make this my default</label><div class="modal-actions"><button value="cancel" class="button button-ghost">Cancel</button><button value="restore" class="button button-primary">Open tabs</button></div></form></dialog>
+</body>
+</html>

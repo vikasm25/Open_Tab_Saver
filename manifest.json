@@ -1,13 +1,14 @@
 {
   "manifest_version": 3,
   "name": "Open Tab Saver",
-  "version": "1.0",
+  "version": "2.3.1",
   "author": "Vikas Kumar Meena",
-  "description": "Save open tabs and store them for later use",
-  "permissions": ["tabs", "storage", "downloads", "alarms"],
+  "description": "Capture, find, export, and reopen your tab sessions.",
+  "permissions": ["tabs", "storage", "alarms"],
   "action": {
-    "default_icon": "icon.png",
-    "default_title": "OpenTab Saver"
+    "default_popup": "popup.html",
+    "default_title": "Open Tab Saver",
+    "default_icon": "icon.png"
   },
   "icons": {
     "16": "icon.png",
@@ -17,4 +18,4 @@
   "background": {
     "service_worker": "background.js"
   }
-} 
+}
